@@ -3,7 +3,7 @@ package com.zln.personal.enums;
 public enum ResultCode {
 
     /* 成功状态 */
-    SUCCESS(0, "成功"),
+    SUCCESS(200, "成功"),
 
     /* 系统500错误 */
     SYSTEM_ERROR(10000, "系统异常，请稍后重试"),
