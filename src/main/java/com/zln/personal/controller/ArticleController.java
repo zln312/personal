@@ -1,5 +1,6 @@
 package com.zln.personal.controller;
 
+import com.zln.personal.response.Result;
 import com.zln.personal.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
