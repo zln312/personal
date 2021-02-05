@@ -19,14 +19,14 @@ public class ResponseHandler implements ResponseBodyAdvice<Object> {
 
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-/**
- *         if(o instanceof ErrorResult){
- *             ErrorResult errorResult = (ErrorResult) o;
- *             return Result.fail(errorResult.getStatus(),errorResult.getMessage());
- *         }else if(o instanceof String){
- *             return JsonUtil.object2Json(Result.suc(o));
- *         }
- */
+
+          if(o instanceof ErrorResult){
+              ErrorResult errorResult = (ErrorResult) o;
+              return Result.fail(errorResult.getStatus(),errorResult.getMessage());
+//          }else if(o instanceof String){
+//              return JsonUtil.object2Json(Result.suc(o));
+         }
+ 
         return Result.suc(o);
     }
 }

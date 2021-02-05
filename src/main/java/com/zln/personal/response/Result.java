@@ -13,11 +13,11 @@ public class Result<T> {
     /**
      * 1.status状态值：代表本次请求response的状态结果
      */
-    private Integer status;
+    private Integer code;
     /**
      * 2.response描述：对本次状态码的描述
      */
-    private String desc;
+    private String message;
     /**
      * 3.data数据：本次返回的数据
      */
@@ -45,10 +45,10 @@ public class Result<T> {
     /**
      * 失败，指定status、desc
      */
-    public static Result fail(Integer status, String desc){
+    public static Result fail(Integer code, String message){
         Result result = new Result();
-        result.setStatus(status);
-        result.setDesc(desc);
+        result.setCode(code);
+        result.setMessage(message);
         return result;
     }
 
@@ -62,9 +62,8 @@ public class Result<T> {
         return result;
     }
 
-
     private void setResultCode(ResultCode code) {
-        this.status = code.code();
-        this.desc = code.message();
+        this.code = code.code();
+        this.message = code.message();
     }
 }
