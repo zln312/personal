@@ -42,7 +42,7 @@ public class ArticleController {
     }
 
     @PutMapping
-    public int updateArticle(Article article) {
+    public int updateArticle(@RequestBody @Validated Article article) {
         return articleService.updateArticle(article);
     }
 
