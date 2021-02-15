@@ -22,7 +22,7 @@ public class ArticleController {
         this.articleService = articleService;
     }
 
-    @GetMapping("/list")
+    @PostMapping("/list")
     public Object getList(@RequestBody  PageRequest pageRequest) {
             return articleService.findAll(pageRequest);
     }
