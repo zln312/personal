@@ -1,5 +1,6 @@
 package com.zln.personal.controller;
 
+import com.zln.personal.page.PageRequest;
 import com.zln.personal.response.Result;
 import com.zln.personal.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +23,8 @@ public class ArticleController {
     }
 
     @GetMapping("/list")
-    public List<Article> getList() {
-        return articleService.getArtList();
+    public Object getList(@RequestBody  PageRequest pageRequest) {
+            return articleService.findAll(pageRequest);
     }
 
     @GetMapping("/{id}")

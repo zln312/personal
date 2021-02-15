@@ -1,10 +1,13 @@
 package com.zln.personal.service;
 
 import com.zln.personal.entity.Article;
+import com.zln.personal.page.PageRequest;
+import com.zln.personal.page.PageResult;
 
 import java.util.List;
 public interface ArticleService {
-    List<Article> getArtList();
+
+    PageResult findAll(PageRequest pageRequest);
 
     Article getArticleById(long id);
 

@@ -1,7 +1,12 @@
 package com.zln.personal.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zln.personal.entity.Article;
 import com.zln.personal.mapper.ArticleMapper;
+import com.zln.personal.page.PageRequest;
+import com.zln.personal.page.PageResult;
+import com.zln.personal.page.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,10 +18,25 @@ public class ArticleServiceImpl implements ArticleService{
     public void setArticleMapper(ArticleMapper articleMapper){
         this.articleMapper = articleMapper;
     }
+
     @Override
-    public List<Article> getArtList() {
-        return articleMapper.findAll();
+    public PageResult findAll(PageRequest pageRequest) {
+        return PageUtils.getPageResult(pageRequest,getPageInfo(pageRequest));
     }
+
+    /**
+     * 调用分页插件完成分页
+     * @param pageRequest
+     * @return
+     */
+    private PageInfo<Article> getPageInfo(PageRequest pageRequest) {
+        int pageNum = pageRequest.getPageNum();
+        int pageSize = pageRequest.getPageSize();
+        PageHelper.startPage(pageNum,pageSize);
+        List<Article> articles = articleMapper.findAll();
+        return new PageInfo<Article>(articles);
+    }
+
 
     @Override
     public Article getArticleById(long id) {
