@@ -21,6 +21,7 @@ class PersonalApplicationTests {
 
     @Test
     void testFindAll(){
+        System.out.println(articleMapper.findArticleById(41));
     }
 
 }
