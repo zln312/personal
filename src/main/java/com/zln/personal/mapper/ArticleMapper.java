@@ -7,7 +7,7 @@ import java.util.List;
 @Mapper
 public interface ArticleMapper {
 
-    @Select("select * from article")
+    @Select("select * from article order by update_time DESC")
     @ResultType(Article.class)
     List<Article> findAll();
 
