@@ -7,11 +7,13 @@ import java.util.List;
 @Mapper
 public interface ArticleMapper {
 
-    @Select("select * from article order by update_time DESC")
+    @Select("SELECT article.*,tag.name as tag_name from article" +
+            " left JOIN tag on article.tag_id=tag.id order by update_time DESC")
     @ResultType(Article.class)
     List<Article> findAll();
 
-    @Select("select * from article where id=#{id}")
+    @Select("SELECT article.*,tag.name as tag_name from article " +
+            "left JOIN tag on article.tag_id=tag.id where article.id=#{id}")
     Article findArticleById(long id);
 
     @Select("select * from article where tag=#{tag}")

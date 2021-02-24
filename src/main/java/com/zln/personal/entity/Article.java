@@ -22,11 +22,13 @@ public class Article {
     private Long updateTime;
 
 //    @NotNull(message="tag cannot be null")
-    private Integer tag;
+    private int tagId;
 
 //    @NotNull(message="intro cannot be null")
     private String intro;
 
     private String cover;
+
+    private String tagName;
 
 }
