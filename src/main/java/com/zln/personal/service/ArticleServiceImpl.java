@@ -43,10 +43,6 @@ public class ArticleServiceImpl implements ArticleService{
         return articleMapper.findArticleById(id);
     }
 
-    @Override
-    public Article getArticleByTag(int tag) {
-        return articleMapper.findArticleByTag(tag);
-    }
 
     @Override
     public int addArticle(Article article) {

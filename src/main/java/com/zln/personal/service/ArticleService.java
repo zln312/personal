@@ -11,8 +11,6 @@ public interface ArticleService {
 
     Article getArticleById(long id);
 
-    Article getArticleByTag(int tag);
-
     int addArticle(Article article);
 
     int updateArticle(Article article);

@@ -1,0 +1,1 @@
+SELECT article.*,GROUP_CONCAT(tag.`name` SEPARATOR ',') tag from article_tag left JOIN article on article.id = article_tag.article_id  LEFT JOIN tag on tag.id = article_tag.tag_id GROUP BY article_tag.article_id order by update_time DESC;

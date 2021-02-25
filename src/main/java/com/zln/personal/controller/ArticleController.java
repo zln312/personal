@@ -32,10 +32,6 @@ public class ArticleController {
         return articleService.getArticleById(id);
     }
 
-    @GetMapping("/tag/{tag}")
-    public Article getArticleByTag(@PathVariable int tag) {
-        return articleService.getArticleByTag(tag);
-    }
 
     @PostMapping
     public int addArticle( @RequestBody @Validated Article article) {

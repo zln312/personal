@@ -21,9 +21,6 @@ public class Article {
 //    @NotNull(message="updateTime cannot be null")
     private Long updateTime;
 
-//    @NotNull(message="tag cannot be null")
-    private int tagId;
-
 //    @NotNull(message="intro cannot be null")
     private String intro;
 
