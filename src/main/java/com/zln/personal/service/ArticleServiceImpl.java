@@ -55,7 +55,6 @@ public class ArticleServiceImpl implements ArticleService{
     @Override
     public int updateArticle(Article article) {
         long time = System.currentTimeMillis();
-        System.out.println(time);
         article.setUpdateTime(time);
         return articleMapper.updateArticle(article);
     }

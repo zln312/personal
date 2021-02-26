@@ -18,8 +18,9 @@ public interface ArticleMapper {
     @Select("SELECT * from article where article.id=#{id}")
     Article findArticleById(long id);
 
-    @Insert("INSERT INTO article (title,content,create_time,update_time,tag,intro,cover)VALUES" +
+    @Insert("INSERT INTO article (title,content,create_time,update_time,intro,cover)VALUES" +
             "(#{title},#{content},#{createTime},#{updateTime},#{intro},#{cover})")
+    @Options(useGeneratedKeys = true, keyProperty = "id" ,keyColumn = "id")
     int addArticle(Article article);
 
     @Update("UPDATE article SET title = #{title},content= #{content}," +
