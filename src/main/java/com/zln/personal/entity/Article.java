@@ -28,6 +28,8 @@ public class Article {
 
     private String cover;
 
+    private String tagName;
+
     private List<Number> tagIds;
 
 }
