@@ -37,13 +37,16 @@ public class ArticleController {
     public Article getArticleById(@PathVariable long id) {
         Article article = articleService.getArticleById(id);
         String oldIds = articleTagService.getTagIdsByArtId(article.getId());
-        System.out.println(oldIds);
-        List<Number> ids = new LinkedList<>();
-        for(String s:Arrays.asList(oldIds.split(","))){
-            ids.add(Integer.valueOf(s));
+        if(oldIds!=null){
+            System.out.println(oldIds);
+            List<Number> ids = new LinkedList<>();
+            for(String s:Arrays.asList(oldIds.split(","))){
+                ids.add(Integer.valueOf(s));
+            }
+            System.out.println(ids);
+            article.setTagIds(ids);
         }
-        System.out.println(ids);
-        article.setTagIds(ids);
+
         return article;
     }
 
