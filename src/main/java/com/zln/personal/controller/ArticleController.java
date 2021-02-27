@@ -1,5 +1,6 @@
 package com.zln.personal.controller;
 
+import com.zln.personal.mapper.ArticleTagMapper;
 import com.zln.personal.page.PageRequest;
 import com.zln.personal.service.ArticleService;
 import com.zln.personal.service.ArticleTagService;
@@ -9,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import com.zln.personal.entity.Article;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 @RestController
@@ -31,14 +35,22 @@ public class ArticleController {
 
     @GetMapping("/{id}")
     public Article getArticleById(@PathVariable long id) {
-        return articleService.getArticleById(id);
+        Article article = articleService.getArticleById(id);
+        String oldIds = articleTagService.getTagIdsByArtId(article.getId());
+        System.out.println(oldIds);
+        List<Number> ids = new LinkedList<>();
+        for(String s:Arrays.asList(oldIds.split(","))){
+            ids.add(Integer.valueOf(s));
+        }
+        System.out.println(ids);
+        article.setTagIds(ids);
+        return article;
     }
 
 
     @PostMapping
     public long addArticle( @RequestBody @Validated Article article) {
         articleService.addArticle(article);
-        System.out.println("id===>>>"+article.getId());
         articleTagService.addArticleTag(article.getId(),article.getTagIds());
         return article.getId();
     }
@@ -47,7 +59,6 @@ public class ArticleController {
     public int updateArticle(@RequestBody @Validated Article article) {
         List<Number> newIds = article.getTagIds();
         String oldIds = articleTagService.getTagIdsByArtId(article.getId());
-
         if(oldIds==null){
             oldIds="";
         }
