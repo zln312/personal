@@ -35,18 +35,17 @@ public class ArticleController {
 
     @GetMapping("/{id}")
     public Article getArticleById(@PathVariable long id) {
+        long start=   System.currentTimeMillis();
         Article article = articleService.getArticleById(id);
         String oldIds = articleTagService.getTagIdsByArtId(article.getId());
         if(oldIds!=null){
-            System.out.println(oldIds);
             List<Number> ids = new LinkedList<>();
             for(String s:Arrays.asList(oldIds.split(","))){
                 ids.add(Integer.valueOf(s));
             }
-            System.out.println(ids);
             article.setTagIds(ids);
         }
-
+        System.out.println(System.currentTimeMillis()-start);
         return article;
     }
 

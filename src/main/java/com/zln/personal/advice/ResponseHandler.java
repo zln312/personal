@@ -2,6 +2,8 @@ package com.zln.personal.advice;
 
 import com.zln.personal.response.ErrorResult;
 import com.zln.personal.response.Result;
+import com.zln.personal.utils.JsonUtils;
+import lombok.SneakyThrows;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -17,14 +19,15 @@ public class ResponseHandler implements ResponseBodyAdvice<Object> {
         return true;
     }
 
+    @SneakyThrows
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
 
           if(o instanceof ErrorResult){
               ErrorResult errorResult = (ErrorResult) o;
               return Result.fail(errorResult.getStatus(),errorResult.getMessage());
-//          }else if(o instanceof String){
-//              return JsonUtil.object2Json(Result.suc(o));
+          }else if(o instanceof String){
+             return JsonUtils.objectToString(Result.suc(o));
          }
  
         return Result.suc(o);
